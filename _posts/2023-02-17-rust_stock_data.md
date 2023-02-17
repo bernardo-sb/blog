@@ -5,7 +5,7 @@ layout: post
 categories: media
 ---
 
-This a the first blog post of a series that will focus on time series analysis and forecasting of stock prices. This post show how to get data from yahoo finance and parse json reponses in rust. 
+This a the first blog post of a series that will focus on time series analysis and forecasting of stock prices. This post show how to get data from yahoo finance and parse json responses in rust. 
 
 ---
 
@@ -17,7 +17,7 @@ Yahoo Finance is a popular platform that provides financial data, news, and insi
 Before we get started, you will need to have rust and Cargo installed on your machine. You can download rust from the official website, rust-lang.org, and Cargo, which is rust's package manager, comes with the rust installation.
 
 ## Downloading Data from the Yahoo Finance API
-To download data from the Yahoo Finance API, we will use the `reqwest` crate, which is a rust HTTP client that allows us to easily send HTTP requests and receive responses. To get started, we first need to add reqwest as a dependency to our `Cargo.toml` file:
+To download data from the Yahoo Finance API, we will use the `reqwest` crate, which is a rust HTTP client that allows us to easily send HTTP requests and receive responses. To get started, we first need to add `reqwest` as a dependency to our `Cargo.toml` file:
 
 ```toml
 [dependencies]
@@ -58,7 +58,7 @@ In this example, we first import the `reqwest` and `tokio` crates.
 
 We then define a main function that is annotated with the `#[tokio::main]` attribute. This attribute tells rust to use the `tokio` runtime to execute the asynchronous code.
 
-Inside the main function, we define the url variable, which contains the URL of the Yahoo Finance API endpoint that we want to query. In this case, we are querying the price history of Apple (`AAPL` - `symbol`) from January 1st (`period1`) until the moment that `main` is ran (`period2`) with intervals of 1 day (`1d`) between obervations (`interval`). We convert dates to timestamps to build de API query and create the final url using `format!`, which creates a `String` using interpolation of runtime expressions.
+Inside the main function, we define the url variable, which contains the URL of the Yahoo Finance API endpoint that we want to query. In this case, we are querying the price history of Apple (`AAPL` - `symbol`) from January 1st (`period1`) until the moment that `main` is ran (`period2`) with intervals of 1 day (`1d`) between observations (`interval`). We convert dates to timestamps to build de API query and create the final url using `format!`, which creates a `String` using interpolation of runtime expressions.
 
 We then create a `reqwest::Client` with a timeout of 5 seconds, and use the `get()` method to send an HTTP GET request to the URL and return the response as a JSON object. JSON values are stored using the `serde_json::Value` data structure, which is a data container that can store any valid JSON value:
 ```rust
@@ -81,7 +81,7 @@ Url: https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=1672531200&p
 ## Parsing Data from the Yahoo Finance API
 Now that we have downloaded the data from the Yahoo Finance API, we can parse it using rust's built-in `serde` crate. `serde` is a rust library for serializing and deserializing data, and it supports many data formats, including JSON, which is what the Yahoo Finance API returns.
 
-To parse the JSON data, we need to add the `serde` and s`erde_json` dependencies to our `Cargo.toml` file:
+To parse the JSON data, we need to add the `serde` and `serde_json` dependencies to our `Cargo.toml` file:
 
 ```toml
 [dependencies]
@@ -148,7 +148,7 @@ let yahoo_quotes_ts: YahooFinanceQuoteTs = YahooFinanceQuoteTs {
 };
 ```
 
-We start by calling the `as_object()` method, which returns a `Result<&Map<String, Value>>`, and access the `["chart"]["result"][0]` object to get the response data. We then extract the reponse's array of timestamps via `["timestamp"]` and quote data through `["indicators"]["quote"]`, using the `as_array()` method, which returns a `Result<&Vec<Value>>`. Finally, we store the data in a struct using the `serde_json::from_value()` method that takes a `serde_json::Value` as input argument; we explicitly copy the object (using `clone()`) since a move occurs because type `serde_json::Value` does not implement the `Copy` trait. While `quote[0]` is a `serde_json::Value`, `timestamps` is of type `&Vec<Value>` and thus we cannot use `serde_json::from_value`, so iterate over the vector and extract the values as `i64` values using the `as_i64()` method.
+We start by calling the `as_object()` method, which returns a `Result<&Map<String, Value>>`, and access the `["chart"]["result"][0]` object to get the response data. We then extract the response's array of timestamps via `["timestamp"]` and quote data through `["indicators"]["quote"]`, using the `as_array()` method, which returns a `Result<&Vec<Value>>`. Finally, we store the data in a struct using the `serde_json::from_value()` method that takes a `serde_json::Value` as input argument; we explicitly copy the object (using `clone()`) since a move occurs because type `serde_json::Value` does not implement the `Copy` trait. While `quote[0]` is a `serde_json::Value`, `timestamps` is of type `&Vec<Value>` and thus we cannot use `serde_json::from_value`, so iterate over the vector and extract the values as `i64` values using the `as_i64()` method.
 
 
 We can visualize our data using:
@@ -183,9 +183,9 @@ The key takeaways from the post are:
 By combining these tools, it is possible to download historical stock price data from the Yahoo Finance API and process it using rust.
 
 # References
-1. (serde_json)[https://docs.rs/serde_json/latest/serde_json/]
-2. (Clone traint)[https://doc.rust-lang.org/std/clone/trait.Clone.html]
-3. (Yahoo API reference)[https://cryptocointracker.com/yahoo-finance/yahoo-finance-api]
-4. (Yahoo finance)[https://finance.yahoo.com/]
-5. (reqwests)[https://docs.rs/reqwest/latest/reqwest/]
-6. (chrono)[https://docs.rs/chrono/latest/chrono/]
+1. [serde_json](ttps://docs.rs/serde_json/latest/serde_json/)
+2. [Clone](raint)[https://doc.rust-lang.org/std/clone/trait.Clone.html)
+3. [Yahoo](PI reference)[https://cryptocointracker.com/yahoo-finance/yahoo-finance-api)
+4. [Yahoo](inance)[https://finance.yahoo.com/)
+5. [reqwests](https://docs.rs/reqwest/latest/reqwest/)
+6. [chrono](https://docs.rs/chrono/latest/chrono/)
