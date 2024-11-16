@@ -9,6 +9,7 @@ In this blog post, we'll explore how to implement a **Singleton pattern** in Rus
 
 ---
 
+
 # Implementing a Singleton Pattern in Rust: A Practical Example
 
 In this blog post, we'll explore how to implement a **Singleton pattern** in Rust. The Singleton design pattern ensures a class has only one instance while providing a global access point to that instance. Rust's ownership model and thread safety make this implementation an interesting challenge.
