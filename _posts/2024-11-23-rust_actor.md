@@ -5,6 +5,7 @@ layout: post
 categories: media
 ---
 
+In this blog we tinker around the actor model in rust. It's a very interesting exercise given Rust's unique features.
 Rust's strengths in memory safety and concurrency make it a great choice for building robust, concurrent systems. In this post, we’ll explore a program that implements an **actor model** in Rust using the asynchronous runtime **Tokio**. This example illustrates message-passing, state management, and graceful shutdown in a concurrent environment.
 
 ---
