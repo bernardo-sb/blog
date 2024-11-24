@@ -419,6 +419,7 @@ This implementation highlights the intricacies of building an actor model in Rus
 
 <summary> The Whole Program </summary>
 
+You can find thw hole implementation bellow:
 
 ```rust
 use futures::future;
