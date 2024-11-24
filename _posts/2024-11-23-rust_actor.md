@@ -417,6 +417,9 @@ This implementation highlights the intricacies of building an actor model in Rus
 
 <details>
 
+<summary> The Whole Program </summary>
+
+
 ```rust
 use futures::future;
 use std::cell::RefCell;
