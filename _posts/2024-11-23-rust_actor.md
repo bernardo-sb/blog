@@ -134,7 +134,7 @@ async fn run(&mut self) {
 }
 ```
 
-The actor continuously listens for messages using `recv`. When the channel closes, the loop ends, and the actor transitions to a `Stopped` state.
+The actor continuously listens for messages using `recv`. When the channel closes, the loop ends, and the actor transitions to a `Stopped` state. Note how a mutable reference to self is passed, this is required by `recv`.
 
 ### Processing Messages
 
