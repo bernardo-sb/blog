@@ -4,7 +4,6 @@ permalink: "/about/"
 layout: page
 ---
 
-## Who I Am
 I’m Bernardo de Lemos, a Principal Machine Learning Engineer at _McKinseay & Company_, based in Portugal. My career revolves around designing and implementing end-to-end Machine Learning and Generative AI systems. With expertise in real-time streaming, asynchronous programming, and concurrency at scale, I build solutions that drive tangible business outcomes.
 
 ## What I Do
