@@ -13,12 +13,6 @@ Additionally, I aimed to investigate how different concurrency mechanisms—such
 
 ---
 
-# Comparing Rust and Python Implementations for Serving Deep Learning Models
-
-Building a service to serve machine learning models, such as a BERT-based embedding generator, requires careful consideration of factors like performance, ease of development, and maintainability. This article explores two implementations of such a service—one in **Rust** and the other in **Python**—and highlights their design choices, strengths, and trade-offs.
-
----
-
 ## Rust Implementation
 
 To explore the efficiency of serving machine learning models, I conducted a benchmark comparison between Python and Rust implementations. My initial hypothesis was that Rust, with its reputation for high performance and low-level control, would significantly outperform Python. Additionally, I aimed to investigate how different concurrency mechanisms—such as `RwLock` and `Mutex` — and the choice between sharing or not sharing the model state among workers would influence performance.
