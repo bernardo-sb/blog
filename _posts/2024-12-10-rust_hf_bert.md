@@ -498,7 +498,7 @@ The last step is running the application using Gunicorn:
 gunicorn --preload -w 10 -k uvicorn.workers.UvicornWorker server:app --bind 0.0.0.0:8000
 ```
 
-- **Preload (`--preload`):  Loads the application code before forking workers, reducing memory usage through shared memory and enabling faster startup times for worker processes.
+- **Preload (`--preload`)**:  Loads the application code before forking workers, reducing memory usage through shared memory and enabling faster startup times for worker processes.
 - **Workers (`-w 10`)**: Spawns 10 worker processes to handle requests concurrently.
 - **Uvicorn Worker (`-k uvicorn.workers.UvicornWorker`)**: Leverages Uvicorn’s high-performance asynchronous worker.
 - **Binding**: Exposes the app on `0.0.0.0:8000` for external access.
