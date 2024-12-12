@@ -13,6 +13,7 @@ Additionally, I aimed to investigate how different concurrency mechanisms—such
 
 ---
 
+
 ## Rust Implementation
 
 To explore the efficiency of serving machine learning models, I conducted a benchmark comparison between Python and Rust implementations. My initial hypothesis was that Rust, with its reputation for high performance and low-level control, would significantly outperform Python. Additionally, I aimed to investigate how different concurrency mechanisms—such as `RwLock` and `Mutex` — and the choice between sharing or not sharing the model state among workers would influence performance.
