@@ -100,9 +100,9 @@ I evaluated the performance of the reranker and the LLM across diverse healthcar
 
 **Metrics and Dataset**
 
-- **Inference Time:** To measure speed and efficiency.
+- **Inference Time:** To measure speed and efficiency. Spoiler: rerankers are a lot faster.
 - **Accuracy:** Both models correctly classified intents across all queries.
-Output Quality: Confidence scores for the reranker and interpretive reasoning for the LLM.
+- **Output Quality:** Confidence scores for the reranker and interpretive reasoning for the LLM.
 
 | **Query**                                                                 | **Correct Intent**          | **Reranker Time w. Description** | **Reranker Time** | **LLM Time** | **Reranker Intent** | **LLM Intent** | 
 |---------------------------------------------------------------------------|-----------------------------|----------------------------|----------------------------|--------------|-------------------------------|--------------------------|
@@ -125,6 +125,7 @@ Output Quality: Confidence scores for the reranker and interpretive reasoning fo
 2. **Results**:
    - Both methods accurately classify intents across diverse queries.
    - The reranker provides confidence scores that reflect its decision-making process, while the LLM outputs detailed reasoning that offers insights into its interpretation of the query.
+   - The descriptions didn't have any impact in the rerankers intent classification accuracy. Discarding descriptions make for inference and simpler setups.
 
 3. **Suitability**:
    - **Reranker**: Best suited for **real-time, high-throughput systems** where processing speed is critical. Confidence scores offer a reliable and lightweight evaluation mechanism.
