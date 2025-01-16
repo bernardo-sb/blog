@@ -123,7 +123,22 @@ def decode_base64_image(base64_string: str) -> Image.Image:
 
 - **Error Handling**: Raises exceptions for invalid or empty image data.
 
-#### 4. **Embedding Generation**
+#### 4. **Loading the Model**
+
+A singleton-like factory for creating and managing the `ModelManager` instance, leveraging Python's `@lru_cache` decorator to ensure the model manager is only initialized once and reused across multiple requests. 
+
+By caching the result with `@lru_cache`, the function avoids redundant model loading and ensures efficient memory usage and faster subsequent responses.
+
+```python
+@lru_cache()
+def get_model_manager():
+    model_name = os.getenv("IMAGE_EMBEDDING_MODEL", "google/vit-base-patch16-224")
+    return ModelManager.from_model_name(model_name)
+```
+
+Retrieves the model name from the `IMAGE_EMBEDDING_MODEL` environment variable, defaulting to `"google/vit-base-patch16-224"` if not set, and calls `ModelManager.from_model_name` to initialize the model manager. 
+
+#### 5. **Embedding Generation**
 
 The core logic resides in the `embed` endpoint:
 
@@ -170,6 +185,7 @@ async def embed(
         raise HTTPException(status_code=500, detail=f"Embedding generation failed: {str(e)}")
 ```
 
+- **Model Dependency Injection:** Dependency injection of the model within endpoint.
 - **Validate Images Shape**: Make sure that images have the right shape and that channels are the last dimension.
 - **Preprocessing:** Images are resized to match the model's expected input size.
 - **Batch Processing**: Handles multiple images in a single request.
