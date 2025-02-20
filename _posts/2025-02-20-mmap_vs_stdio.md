@@ -147,6 +147,7 @@ timings.push(timing);
 ---
 
 ### Standard I/O File Handling (`truncate_with_standard_io`)
+
 #### Reading the File into a Buffer
 
 ```rust
@@ -183,7 +184,8 @@ Writes the truncated buffer back to the file.
 
 ---
 
-### Counting Newlines (Commented-Out Alternative)
+### Counting Newlines
+
 Both I/O alternatives have a commented-out alternative that counts newlines instead of truncating:
 ```rust
 let (count, timing) = measure("count lines", || {mmap.iter().filter(|&x| *x == b'\n').count()});
@@ -193,7 +195,7 @@ Uses `iter().filter()` to count all occurrences of `\n` in the file.
 
 ---
 
-### Replaceing `,` with `;` (Commented-Out Alternative)
+### Replaceing `,` with `;`
 
 Both I/O alternatives have a commented-out alternative that replaces `,` with `;` in the file:
 
@@ -232,6 +234,7 @@ println!("Standard I/O: {:?}", std_total);
 ---
 
 ## **Summary**
+
 | Feature            | `truncate_with_mmap` (Memory Mapped I/O) | `truncate_with_standard_io` (Standard I/O) |
 |--------------------|--------------------------------|----------------------------------|
 | **File Opening**   | `OpenOptions::new().read(true).write(true)` | `File::open(filename)` |
@@ -267,6 +270,7 @@ The tests were conducted on datasets of varying sizes:
 ### Task 1: Keep First Line and Truncate File
 
 #### Large Dataset
+
 | Operation                        | Memory Mapping | Standard I/O |
 |----------------------------------|------------------------|----------------------|
 | Open file                        | 39.375µs               | 38.5µs               |
@@ -281,6 +285,7 @@ The tests were conducted on datasets of varying sizes:
 | **Difference**                     | **48.977663334s**      |                      |
 
 #### Small Dataset
+
 | Operation                        | Memory Mapping    | Standard I/O    |
 |----------------------------------|------------------------|----------------------|
 | Open file                        | 26.625µs               | 16.042µs             |
@@ -297,6 +302,7 @@ The tests were conducted on datasets of varying sizes:
 ### Task 2: Count Lines
 
 #### Large Dataset
+
 | Operation                        | Memory Mapping         | Standard I/O         |
 |----------------------------------|------------------------|----------------------|
 | Open file                        | 25.292µs               | -                    |
@@ -310,6 +316,7 @@ Unable to count lines in large files using standard I/O due to memory constraint
 macOS kills process when virtual memory is exceeded; mmap does not load the entire file into RAM at once. Instead, it maps the file into virtual memory and only loads pages as needed.
 
 #### Small Dataset
+
 | Operation                        | Memory Mapping    | Standard I/O    |
 |----------------------------------|------------------------|----------------------|
 | Open file                        | 13.875µs               | 15.208µs             |
@@ -326,6 +333,7 @@ macOS kills process when virtual memory is exceeded; mmap does not load the enti
 ### Task 3: Replace Content
 
 #### Large Dataset
+
 | Operation                        | Memory Mapping  | Standard I/O  |
 |----------------------------------|------------------------|----------------------|
 | Open file                        | 56.833µs               | 45.416µs             |
@@ -340,6 +348,7 @@ macOS kills process when virtual memory is exceeded; mmap does not load the enti
 | **Difference**                     | **155.450305832s**     |                      |
 
 #### Small Dataset
+
 | Operation                        | Memory Mapping    | Standard I/O    |
 |----------------------------------|------------------------|----------------------|
 | Open file                        | 31.792µs               | 39.459µs             |
@@ -354,6 +363,7 @@ macOS kills process when virtual memory is exceeded; mmap does not load the enti
 | **Difference**                     | **945.291µs**          |                      |
 
 ### Analysis
+
 Memory mapping significantly outperforms standard I/O for large files, particularly in reading and writing operations. However, for small files, the difference is minimal, with standard I/O occasionally being faster.
 
 When counting lines in large files, memory mapping faced limitations due to virtual memory constraints, leading to process termination.
