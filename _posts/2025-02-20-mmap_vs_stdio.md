@@ -9,6 +9,7 @@ When dealing with large files, efficient file handling can make a significant di
 
 ---
 
+
 ## The Rust Program
 
 The provided Rust program benchmarks two approaches for truncating a file after the first newline character and counting lines:
